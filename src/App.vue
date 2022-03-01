@@ -1,60 +1,141 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <Header />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <v-container class="mt-15 pt-10">
+      <router-view/>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+
+import Header from "./components/Header";
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    Header
   },
 
   data: () => ({
-    //
+    seconds: 0,
+    count: 0
   }),
+  methods: {
+    incrementSeconds() {
+      this.seconds++
+    }
+  },
+  mounted() {
+    if (this.$route.name === 'MainPage') {
+      this.$router.push('/red')
+    }
+
+  },
+  updated() {
+
+    if (this.$route.name === 'RedPage') {
+      setTimeout(() => {
+        this.$router.push('/yellow')
+      }, 10000)
+
+      this.count = 10
+
+      let incrementInterval = setInterval(() => {
+        if (this.seconds < this.count) {
+          this.incrementSeconds(this.count)
+
+        } else {
+          clearInterval(incrementInterval)
+          this.seconds = 0
+          this.count = 3
+        }
+      }, 1000)
+
+    } else if (this.$route.name === 'YellowPage') {
+      setTimeout(() => {
+        this.$router.push('/green')
+      }, 3000)
+
+      let incrementInterval = setInterval(() => {
+        if (this.seconds < this.count) {
+          this.incrementSeconds(this.count)
+
+        } else {
+          clearInterval(incrementInterval)
+          this.seconds = 0
+          this.count = 15
+        }
+      }, 1000)
+
+    } else if (this.$route.name === 'GreenPage') {
+      setTimeout(() => {
+        this.$router.push('/red')
+      }, 15000)
+
+      let incrementInterval = setInterval(() => {
+        if (this.seconds < this.count) {
+          this.incrementSeconds(this.count)
+
+        } else {
+          clearInterval(incrementInterval)
+          this.seconds = 0
+          this.count = 10
+        }
+      }, 1000)
+    }
+  }
 };
 </script>
+
+<style>
+  .red-light {
+    background-color: #ff0000;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .yellow-light {
+    background-color: #ffff00;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .green-light {
+    background-color: #14ff14;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+
+  .red-off-light {
+    background-color: #6d0707;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+  }
+  .yellow-off-light {
+    background-color: #93930f;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .green-off-light {
+    background-color: #0b6f0b;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .traffic-light {
+    margin: 0 auto;
+    padding: 50px 0;
+    width: 200px;
+    border-radius: 20px;
+  }
+</style>
