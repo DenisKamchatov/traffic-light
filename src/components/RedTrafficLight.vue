@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "RedTrafficLight"
+  name: "RedTrafficLight",
 }
 </script>
 

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <RedTrafficLight />
-  </div>
+  <RedTrafficLight />
 </template>
 
 <script>
