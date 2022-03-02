@@ -9,6 +9,21 @@
       >
         <v-toolbar-title>Traffic Light</v-toolbar-title>
 
+        <v-btn
+          to="/red"
+        >
+          Red
+        </v-btn>
+        <v-btn
+            to="/yellow"
+        >
+          Yellow
+        </v-btn>
+        <v-btn
+            to="/green"
+        >
+          Green
+        </v-btn>
       </v-app-bar>
     </div>
 </template>
