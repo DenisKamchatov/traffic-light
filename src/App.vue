@@ -41,19 +41,6 @@ export default {
         this.page = 'red'
       }, 10000)
 
-      // this.count = 10
-      //
-      // let incrementInterval = setInterval(() => {
-      //   if (this.seconds < this.count) {
-      //     this.incrementSeconds(this.count)
-      //
-      //   } else {
-      //     clearInterval(incrementInterval)
-      //     this.seconds = 0
-      //     this.count = 3
-      //   }
-      // }, 1000)
-
     } else if (this.$route.name === 'YellowPage') {
       setTimeout(() => {
         if (this.page === 'green') {
@@ -63,33 +50,11 @@ export default {
         }
       }, 3000)
 
-      // let incrementInterval = setInterval(() => {
-      //   if (this.seconds < this.count) {
-      //     this.incrementSeconds(this.count)
-      //
-      //   } else {
-      //     clearInterval(incrementInterval)
-      //     this.seconds = 0
-      //     this.count = 15
-      //   }
-      // }, 1000)
-
     } else if (this.$route.name === 'GreenPage') {
       setTimeout(() => {
         this.$router.push('/yellow')
         this.page = 'green'
       }, 15000)
-
-      // let incrementInterval = setInterval(() => {
-      //   if (this.seconds < this.count) {
-      //     this.incrementSeconds(this.count)
-      //
-      //   } else {
-      //     clearInterval(incrementInterval)
-      //     this.seconds = 0
-      //     this.count = 10
-      //   }
-      // }, 1000)
     }
   }
 };
